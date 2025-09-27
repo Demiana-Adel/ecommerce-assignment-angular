@@ -1,0 +1,25 @@
+
+<form (ngSubmit)="addNewAccount()" enctype="multipart/form-data" class="modern-form">
+  <div class="form-group">
+  <div class="form-group">
+      <label class="form-label">User Name </label>
+      <input type="text" class="form-control" name="username" [(ngModel)]="newAccount.userName">
+  </div>
+
+
+  <div class="form-group">
+      <label class="form-label">Email address</label>
+      <input type="email" class="form-control" name="email" [(ngModel)]="newAccount.email">
+  </div>
+  <div class="form-group">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="newAccount.password">
+  </div>
+
+</div>
+  <button type="submit" class="btn btn-primary btn-submit">Register</button>
+
+</form>
+
+
+

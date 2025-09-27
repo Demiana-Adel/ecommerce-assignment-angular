@@ -1,0 +1,80 @@
+<!-- Update form -->
+<form *ngIf="!isLoadingProduct && !errorMessage" (ngSubmit)="updateProduct()" class="modern-form">
+
+    <div class="form-group">
+        <label class="form-label">Category</label>
+        <input type="text" class="form-control" name="category" [(ngModel)]="product.category" required>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Product Code</label>
+        <div class="input-group">
+            <input type="text" class="form-control" name="productCode" [(ngModel)]="product.productCode" required>
+            <!-- <div class="input-group-append">
+                                    <button type="button" 
+                                            class="btn btn-outline-secondary" 
+                                            (click)="generateProductCode()"
+                                            title="Generate new product code">
+                                        Generate
+                                    </button>
+                                </div> -->
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Product Name</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="product.name" required>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Product Image</label>
+
+        <!-- Current image preview -->
+        <div *ngIf="currentImageUrl" class="mb-3">
+            <p class="text-muted">Current image:</p>
+            <img [src]="currentImageUrl" alt="Product image" class="img-thumbnail"
+                style="max-width: 200px; max-height: 200px;">
+        </div>
+
+        <!-- File input for new image -->
+        <input type="file" class="form-control" name="image" (change)="onImageSelected($event)" accept="image/*" />
+
+        <small class="form-text text-muted">
+            Leave empty to keep current image. Max size: 5MB
+        </small>
+
+        <!-- Remove image button -->
+        <button *ngIf="newImageSelected" type="button" class="btn btn-sm btn-outline-danger mt-2"
+            (click)="removeImage()">
+            Remove Selected Image
+        </button>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Price</label>
+        <input type="number" class="form-control" name="price" [(ngModel)]="product.price" step="0.01" min="0" required>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Discount Rate (%)</label>
+        <input type="number" class="form-control" name="discountRate" [(ngModel)]="product.discountRate" step="0.01"
+            min="0" max="100" placeholder="Optional">
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Minimum Quantity</label>
+        <input type="number" class="form-control" name="minimumQuantity" [(ngModel)]="product.minimumQuantity" min="1"
+            required>
+    </div>
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary btn-submit" [disabled]="isLoading">
+            <span *ngIf="isLoading" class="spinner-border spinner-border-sm mr-2" role="status"></span>
+            {{ isLoading ? 'Updating...' : 'Update Product' }}
+        </button>
+
+        <button type="button" class="btn btn-secondary ml-2" (click)="cancel()" [disabled]="isLoading">
+            Cancel
+        </button>
+    </div>
+</form>

@@ -1,0 +1,52 @@
+.navbar {
+    background-color: #2a2e32;
+}
+.logo
+{
+  width: 135px;
+  height: 35px;
+  padding-top: 2px;
+}
+.logo2{
+  width: 60px;
+  height: 20px;
+  padding-top: 2px;
+}
+.logo2 {
+  display: none; 
+}
+.dropdown-menu :hover{
+  background-color: #EB5805;
+  color: #ffffff;
+}
+
+@media only screen and (max-width: 767px) {
+  #logoLarge {
+      display: none; 
+  }
+  #logoSmall {
+      display: inline; 
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #logoLarge {
+      display: inline; 
+  #logoSmall {
+      display: none; 
+  }
+}
+@media only screen and (max-width: 767px) {
+  #searchInput {
+    margin-top: 12px;
+      width: 35%;
+      height: 20px;
+  }
+  #searchButton ,#dropdownMenuButton{
+     margin-top: 12px;
+      font-size: 7px;
+      height: 20px;
+      width: 15%;
+  }
+}
+}

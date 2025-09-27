@@ -1,0 +1,44 @@
+<div class="container-fluid">
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Product Code</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Price</th>
+                    <th>Discount Rate</th>
+                    <th>Minimum Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ productDetails.category }}</td>
+                    <td>{{ productDetails.productCode }}</td>
+                    <td>{{ productDetails.name }}</td>
+                    <td>
+                        <img *ngIf="productDetails.image" 
+                             [src]="productDetails.image" 
+                             alt="{{ productDetails.name }}" 
+                             class="img-thumbnail" 
+                             style="max-width: 100px; max-height: 100px;">
+                        <span *ngIf="!productDetails.image" class="text-muted">No image</span>
+                    </td>
+                    <td>{{ productDetails.price | currency }}</td>
+                    <td>
+                        <span *ngIf="productDetails.discountRate">{{ productDetails.discountRate }}%</span>
+                        <span *ngIf="!productDetails.discountRate" class="text-muted">No discount</span>
+                    </td>
+                    <td>{{ productDetails.minimumQuantity }}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Optional: Show calculated discounted price if discount rate exists -->
+        <!-- <div *ngIf="productDetails.discountRate" class="alert alert-info">
+            <strong>Discounted Price: </strong>
+            {{ (productDetails.price * (1 - productDetails.discountRate / 100)) | currency }}
+        </div> -->
+    </div>
+</div>
