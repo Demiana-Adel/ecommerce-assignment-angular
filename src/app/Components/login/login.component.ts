@@ -26,6 +26,7 @@ constructor(private userService:UserServiceService , private router:Router){
   
 login()
 {
+  debugger ;
   console.log(this.formGroup.value);
   
   this.userService.loginUser(this.formGroup.value).subscribe({

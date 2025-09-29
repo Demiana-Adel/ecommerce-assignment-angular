@@ -1,12 +1,14 @@
-<div class="row">
-  <div class="col-12 m-0 p-0">
-    <!-- <app-header></app-header> -->
-
+<div class="app-container container-fluid" [ngClass]="{'logged-in': isLoggedin}">
+  <div class="row" [hidden]="!isLoggedin">
+    <div class="col-12 m-0 p-0">
+      <app-header></app-header>
+    </div>
   </div>
-  <div class="col-12 m-0 p-0">
-
-    <router-outlet></router-outlet>
-
+  <div class="row no-gutters">
+    <div class="col-sm-4 col-md-2" [hidden]="!isLoggedin">
+    </div>
+    <div class="col-sm-8 col-md-10 bg-light" [ngClass]="{'logged': !isLoggedin}">
+      <router-outlet></router-outlet>
+    </div>
   </div>
-
 </div>

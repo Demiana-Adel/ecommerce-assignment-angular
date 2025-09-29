@@ -1,5 +1,9 @@
 export interface GetAllUserDto {
-    userName?: string;
-    email?: string;
-    lastLoginTime?: Date;
+    entities: {
+        id: string;
+        userName?: string;
+        email?: string;
+        lastLoginTime?: Date;
+    }[],
+    count: number
 }

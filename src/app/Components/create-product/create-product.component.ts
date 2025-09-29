@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CreateOrUpdateProductDto } from 'src/app/Models/Product/create-or-update-product-dto';
 import { ProductServiceService } from 'src/app/Services/interceptors/Product/product-service.service';
+import { UserServiceService } from 'src/app/Services/interceptors/User/user-service.service';
 
 @Component({
   selector: 'app-create-product',
@@ -21,7 +22,7 @@ export class CreateProductComponent implements OnInit {
         minimumQuantity: 1,
         userId: '4F6441C1-1290-4794-5824-08DDFDA7C069'
     };
-
+  userId:string = '' ; 
     // Loading state
     isLoading = false;
     
@@ -30,32 +31,24 @@ export class CreateProductComponent implements OnInit {
 
     constructor(
         private productService: ProductServiceService, 
-        private router: Router
+        private router: Router , 
+        private userService:UserServiceService ,
         // Inject your user service here if needed
         // private userService: UserService
     ) {}
 
     ngOnInit(): void {
         this.setCurrentUserId();
+
     }
 
     /**
      * Set current user ID
      */
     setCurrentUserId(): void {
-        // Replace with your actual user service
-        // this.userService.getCurrentUser().subscribe({
-        //     next: (user) => {
-        //         this.newProduct.userId = user.id;
-        //     },
-        //     error: (error) => {
-        //         console.error('Error getting current user:', error);
-        //         this.errorMessage = 'Failed to get current user information';
-        //     }
-        // });
-
-        // Mock user ID for now
-        this.newProduct.userId = '4F6441C1-1290-4794-5824-08DDFDA7C069';
+        this.userId = this.userService.getUserId() ; 
+        console.log(this.userId)
+        this.newProduct.userId =this.userId;
     }
 
     /**

@@ -40,14 +40,39 @@ export class UserServiceService {
   }
 
 
+  // Service
   deleteUser(userId: string): Observable<UserDto> {
     const params = new HttpParams().set('userId', userId);
-    return this.http.delete<UserDto>(`${this.baseUrl}/DeleteUser`, { params });
+    return this.http.delete<UserDto>(`${this.baseUrl}/DeleteUser`,
+      { params });
   }
-   isLoggedIn():boolean {
-  return localStorage.getItem('token') ?true :false;
+  isLoggedIn(): boolean {
+    return localStorage.getItem('token') ? true : false;
   }
   getLoggedStatus(): BehaviorSubject<boolean> {
     return this.isLoggedStatus;
   }
+  Logout(value: boolean): Observable<IReturnedToken> {
+    this.isLoggedStatus.next(false);
+    return this.http.post<IReturnedToken>(`${this.baseUrl}/UserLogOut`, value);
+  }
+  getDecodedToken(): any {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+
+    try {
+      const payload = token.split('.')[1]; // JWT structure: header.payload.signature
+      const decodedPayload = JSON.parse(atob(payload));
+      return decodedPayload; // contains user data (sub, nameid, role, etc.)
+    } catch (err) {
+      console.error('Invalid token', err);
+      return null;
+    }
+  }
+
+  getUserId(): string {
+    const decoded = this.getDecodedToken();
+    return decoded["userId"];
+  }
+
 }

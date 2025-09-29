@@ -27,11 +27,13 @@ import { HomeComponent } from './Components/home/home.component';
     LoginComponent,
   ],
   imports: [
-     BrowserModule,
+    BrowserModule,
     HttpClientModule, // Required for HTTP calls
     RouterModule.forRoot(routes), // Required for routing
     FormsModule, // Required for template-driven forms
-    ReactiveFormsModule , RouterLink],
+    ReactiveFormsModule, RouterLink,
+    HeaderComponent
+],
   providers: [],
   bootstrap: [AppComponent]
 })
