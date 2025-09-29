@@ -9,7 +9,7 @@ import { LoginComponent } from './Components/login/login.component';
 import { GetAllUsersComponent } from './Components/get-all-users/get-all-users.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/Home', pathMatch: 'full' },
+    { path: '', redirectTo: '/Login', pathMatch: 'full' },
     { path: 'Home', component: HomeComponent },
     { path: 'products', component: GetAllProductsComponent },
     { path: 'createProduct', component: CreateProductComponent }, // if you have this component
@@ -19,6 +19,6 @@ export const routes: Routes = [
     { path: 'Login', component: LoginComponent }, // if you have this component
     { path: 'Users', component: GetAllUsersComponent }, // if you have this component
 
-    { path: '**', redirectTo: '/Home' }
+    { path: '**', redirectTo: '/Login' }
 
 ];
